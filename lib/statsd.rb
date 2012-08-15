@@ -108,7 +108,9 @@ class Statsd
   # @param [String] stat stat name
   # @param [String] key key
   # @param [Integer] aggregate_period time to aggregate for in secs
-  def unique(stat, key, aggregate_period=60); send stat, key, 'u', aggregate_period end
+  def unique(stat, key, aggregate_period=60)
+    send_stats stat, key, :u, aggregate_period
+  end
 
   # Sends a timing (in ms) for the given stat to the statsd server. The
   # sample_rate determines what percentage of the time this report is sent. The
